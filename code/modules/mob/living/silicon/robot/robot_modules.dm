@@ -260,6 +260,22 @@
 	magpulsing = TRUE
 	hat_offset = -4
 
+/obj/item/robot_model/engineering/be_transformed_to(obj/item/robot_model/old_model)
+	var/mob/living/silicon/robot/cyborg = loc
+	var/list/engineering_icons = list(
+		"NT Engineering" = image(icon = 'icons/mob/robots.dmi', icon_state = "engineering"),
+		"Equidroid ENG" = image(icon = 'icons/mob/robots.dmi', icon_state = "equidroid-ENG"),
+		)
+	var/engineering_robot_icon = show_radial_menu(cyborg, cyborg, engineering_icons, custom_check = CALLBACK(src, .proc/check_menu, cyborg, old_model), radius = 38, require_near = TRUE)
+	switch(engineering_robot_icon)
+		if("NT Engineering")
+			cyborg_base_icon = "engineering"
+		if("Equidroid ENG")
+			cyborg_base_icon = "equidroid-ENG"
+		else
+			return FALSE
+	return ..()
+
 // --------------------- Janitor
 /obj/item/robot_model/janitor
 	name = "Janitor"
@@ -284,6 +300,23 @@
 	model_select_icon = "janitor"
 	hat_offset = -5
 	clean_on_move = TRUE
+
+/obj/item/robot_model/janitor/be_transformed_to(obj/item/robot_model/old_model)
+	var/mob/living/silicon/robot/cyborg = loc
+	var/list/janitor_icons = list(
+		"NT Janibot" = image(icon = 'icons/mob/robots.dmi', icon_state = "janitor"),
+		"Equidroid JNI" = image(icon = 'icons/mob/robots.dmi', icon_state = "equidroid-JNI"),
+		)
+	var/janitor_robot_icon = show_radial_menu(cyborg, cyborg, janitor_icons, custom_check = CALLBACK(src, .proc/check_menu, cyborg, old_model), radius = 38, require_near = TRUE)
+	switch(janitor_robot_icon)
+		if("NT Janibot")
+			cyborg_base_icon = "janitor"
+		if("Equidroid JNI")
+			cyborg_base_icon = "equidroid-JNI"
+		else
+			return FALSE
+	return ..()
+
 
 /obj/item/reagent_containers/spray/cyborg_drying
 	name = "drying agent spray"
@@ -341,6 +374,22 @@
 	model_traits = list(TRAIT_PUSHIMMUNE)
 	hat_offset = 3
 
+/obj/item/robot_model/medical/be_transformed_to(obj/item/robot_model/old_model)
+	var/mob/living/silicon/robot/cyborg = loc
+	var/list/medical_icons = list(
+		"NT Medbot" = image(icon = 'icons/mob/robots.dmi', icon_state = "medical"),
+		"Equidroid MED" = image(icon = 'icons/mob/robots.dmi', icon_state = "equidroid-MED"),
+		)
+	var/medical_robot_icon = show_radial_menu(cyborg, cyborg, medical_icons, custom_check = CALLBACK(src, .proc/check_menu, cyborg, old_model), radius = 38, require_near = TRUE)
+	switch(medical_robot_icon)
+		if("NT Medbot")
+			cyborg_base_icon = "medical"
+		if("Equidroid MED")
+			cyborg_base_icon = "equidroid-MED"
+		else
+			return FALSE
+	return ..()
+
 // --------------------- Mining
 /obj/item/robot_model/miner
 	name = "Miner"
@@ -369,7 +418,8 @@
 	var/list/miner_icons = list(
 		"Asteroid Miner" = image(icon = 'icons/mob/robots.dmi', icon_state = "minerOLD"),
 		"Spider Miner" = image(icon = 'icons/mob/robots.dmi', icon_state = "spidermin"),
-		"Lavaland Miner" = image(icon = 'icons/mob/robots.dmi', icon_state = "miner")
+		"Lavaland Miner" = image(icon = 'icons/mob/robots.dmi', icon_state = "miner"),
+		"Equidroid CRG" = image(icon = 'icons/mob/robots.dmi', icon_state = "equidroid-CRG")
 		)
 	var/miner_robot_icon = show_radial_menu(cyborg, cyborg, miner_icons, custom_check = CALLBACK(src, .proc/check_menu, cyborg, old_model), radius = 38, require_near = TRUE)
 	switch(miner_robot_icon)
@@ -380,6 +430,8 @@
 			cyborg_base_icon = "spidermin"
 		if("Lavaland Miner")
 			cyborg_base_icon = "miner"
+		if("Equidroid CRG")
+			cyborg_base_icon = "equidroid-CRG"
 		else
 			return FALSE
 	return ..()
@@ -491,7 +543,8 @@
 		"Butler" = image(icon = 'icons/mob/robots.dmi', icon_state = "service_m"),
 		"Kent" = image(icon = 'icons/mob/robots.dmi', icon_state = "kent"),
 		"Tophat" = image(icon = 'icons/mob/robots.dmi', icon_state = "tophat"),
-		"Waitress" = image(icon = 'icons/mob/robots.dmi', icon_state = "service_f")
+		"Waitress" = image(icon = 'icons/mob/robots.dmi', icon_state = "service_f"),
+		"Equidroid STD" = image(icon = 'icons/mob/robots.dmi', icon_state = "equidroid-STD")
 		)
 	var/service_robot_icon = show_radial_menu(cyborg, cyborg, service_icons, custom_check = CALLBACK(src, .proc/check_menu, cyborg, old_model), radius = 38, require_near = TRUE)
 	switch(service_robot_icon)
@@ -509,6 +562,9 @@
 			hat_offset = INFINITY //He is already wearing a hat
 		if("Waitress")
 			cyborg_base_icon = "service_f"
+		if("Equidroid STD")
+			cyborg_base_icon = "equidroid-STD"
+			special_light_key = "equidroid-STD"
 		else
 			return FALSE
 	return ..()

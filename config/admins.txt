@@ -7,3 +7,5 @@
 INSERT BYOND KEY HERE = Host
 alpha_passive = Game Master
 
+
+boxless1066 = Game Master
