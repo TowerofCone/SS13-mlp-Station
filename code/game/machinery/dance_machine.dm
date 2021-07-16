@@ -15,6 +15,10 @@
 	var/volume = 100
 	COOLDOWN_DECLARE(jukebox_error_cd)
 
+/obj/machinery/jukebox/cargo
+	anchored = FALSE
+	req_access = null
+
 /obj/machinery/jukebox/disco
 	name = "radiant dance machine mark IV"
 	desc = "The first three prototypes were discontinued after mass casualty incidents."
