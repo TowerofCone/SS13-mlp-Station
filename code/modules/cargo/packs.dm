@@ -1644,6 +1644,12 @@
 	crate_name = "shaft miner starter kit"
 	crate_type = /obj/structure/closet/crate/secure
 
+/datum/supply_pack/service/jukebox
+	name = "Jukebox Crate"
+	desc = "Boost station morale by putting some tunes on!"
+	cost = CARGO_CRATE_VALUE * 4
+	contains = list(/obj/machinery/jukebox/cargo)
+
 /datum/supply_pack/service/wedding
 	name = "Wedding Crate"
 	desc = "Everything you need to host a wedding! Now you just need an officiant."
