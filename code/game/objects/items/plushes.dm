@@ -645,3 +645,15 @@
 	attack_verb_continuous = list("slashes", "bites", "charges")
 	attack_verb_simple = list("slash", "bite", "charge")
 	squeak_override = list('sound/items/intents/Help.ogg' = 1)
+	
+	
+	
+/obj/item/toy/plush/anon
+	name = "anon filly plushie"
+	desc = "A plushie depicting a anon filly."
+	icon_state = "anon"
+	inhand_icon_state = "anon_filly_plush"
+	attack_verb_continuous = list("boops","baps")
+	attack_verb_simple = list("boop", "bap")
+	squeak_override = list('sound/misc/squee.ogg' = 1)
+
