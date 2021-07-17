@@ -651,7 +651,7 @@
 /obj/item/toy/plush/anon
 	name = "anon filly plushie"
 	desc = "A plushie depicting a anon filly."
-	icon_state = "anon"
+	icon_state = "anon_filly_plush"
 	inhand_icon_state = "anon_filly_plush"
 	attack_verb_continuous = list("boops","baps")
 	attack_verb_simple = list("boop", "bap")
