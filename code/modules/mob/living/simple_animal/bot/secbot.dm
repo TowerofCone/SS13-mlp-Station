@@ -23,6 +23,7 @@
 
 	combat_mode = TRUE
 
+	var/aj_voice = FALSE
 	var/baton_type = /obj/item/melee/baton
 	var/obj/item/weapon
 	var/mob/living/carbon/target
@@ -51,6 +52,12 @@
 	auto_patrol = TRUE
 	commissioned = TRUE
 
+/mob/living/simple_animal/bot/secbot/sheriffjack
+	name = "Sheriff Jack"
+	desc = "Better get back; it's Sheriff Jack!"
+	aj_voice = TRUE
+	icon_state = "sheriffjack"
+
 /mob/living/simple_animal/bot/secbot/beepsky/jr
 	name = "Officer Pipsqueak"
 	desc = "It's Commander Beep O'sky's smaller, just-as aggressive cousin, Pipsqueak."
@@ -60,7 +67,6 @@
 	. = ..()
 	resize = 0.8
 	update_transform()
-
 
 /mob/living/simple_animal/bot/secbot/beepsky/explode()
 	var/atom/Tsec = drop_location()
@@ -286,7 +292,10 @@ Auto Patrol: []"},
 	if(!C.handcuffed)
 		C.set_handcuffed(new /obj/item/restraints/handcuffs/cable/zipties/used(C))
 		C.update_handcuffed()
-		playsound(src, "law", 50, FALSE)
+		if (aj_voice)
+			playsound(src,"aj_law", 50, FALSE)
+		else
+			playsound(src, "law", 50, FALSE)
 		back_to_idle()
 
 /mob/living/simple_animal/bot/secbot/proc/stun_attack(mob/living/carbon/C, harm = FALSE)
@@ -446,7 +455,10 @@ Auto Patrol: []"},
 			if(ranged)
 				playsound(src, pick('sound/voice/ed209_20sec.ogg', 'sound/voice/edplaceholder.ogg'), 50, FALSE)
 			else
-				playsound(src, pick('sound/voice/beepsky/criminal.ogg', 'sound/voice/beepsky/justice.ogg', 'sound/voice/beepsky/freeze.ogg'), 50, FALSE)
+				if (aj_voice)
+					playsound(src, "aj_infraction", 50, FALSE)
+				else
+					playsound(src, "infraction", 50, FALSE)
 			visible_message("<b>[src]</b> points at [C.name]!")
 			mode = BOT_HUNT
 			INVOKE_ASYNC(src, .proc/handle_automated_action)

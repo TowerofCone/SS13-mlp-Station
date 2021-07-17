@@ -314,6 +314,7 @@
 	created_name = "Securitron" //To preserve the name if it's a unique securitron I guess
 	var/swordamt = 0 //If you're converting it into a grievousbot, how many swords have you attached
 	var/toyswordamt = 0 //honk
+	var/applejack = FALSE // If applejack has been added
 
 /obj/item/bot_assembly/secbot/attackby(obj/item/I, mob/user, params)
 	..()
@@ -366,6 +367,16 @@
 				build_step--
 
 		if(ASSEMBLY_FOURTH_STEP)
+			if(istype(I, /obj/item/reagent_containers/food/drinks/bottle/applejack))
+				if(!user.temporarilyRemoveItemFromInventory(I))
+					return
+				to_chat(user, span_notice("You add [I] to [src]!"))
+				name = "helmet/signaler/prox sensor/robot arm/applejack assembly"
+				add_overlay("hs_hat")
+				qdel(I)
+				applejack = TRUE
+				build_step++
+				
 			if(istype(I, /obj/item/melee/baton))
 				if(!can_finish_build(I, user))
 					return
@@ -414,6 +425,17 @@
 						new /obj/item/toy/sword(Tsec)
 
 		if(ASSEMBLY_FIFTH_STEP)
+			if(istype(I, /obj/item/melee/baton) && applejack)
+				if(!can_finish_build(I, user))
+					return
+				to_chat(user, span_notice("You complete Sheriff Jack! Yee haw!"))
+				var/mob/living/simple_animal/bot/secbot/sheriffjack/S = new(Tsec)
+				created_name = "Sheriff Jack"
+				S.name = created_name
+				S.baton_type = I.type
+				S.robot_arm = robot_arm
+				qdel(I)
+				qdel(src)
 			if(istype(I, /obj/item/melee/transforming/energy/sword/saber))
 				if(swordamt < 3)
 					if(!user.temporarilyRemoveItemFromInventory(I))
