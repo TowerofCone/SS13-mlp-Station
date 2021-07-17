@@ -37,6 +37,13 @@
 	vary = TRUE
 	sound = 'sound/items/bikehorn.ogg'
 
+/datum/emote/silicon/squee
+	key = "squee"
+	key_third_person = "squees"
+	message = "squees."
+	emote_type = EMOTE_AUDIBLE
+	sound = 'sound/misc/squee.ogg'
+	
 /datum/emote/silicon/ping
 	key = "ping"
 	key_third_person = "pings"
